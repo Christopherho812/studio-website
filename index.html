@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>港灣設計工作室 Harbour Studio</title>
+  <meta name="description" content="港灣設計工作室是一間位於香港的設計工作室，專注平面設計、社交媒體內容及品牌設計。">
+  <style>
+    :root {
+      --navy: #0b1f3a;
+      --navy-light: #1c3a63;
+      --accent: #3d6fb6;
+      --white: #ffffff;
+      --off-white: #f5f7fa;
+      --text: #1a2433;
+      --muted: #5b6b80;
+      --line: #e1e6ee;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Helvetica Neue", Arial, "PingFang HK", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 導覽列 */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+    }
+    .logo span { color: var(--accent); }
+    .nav ul {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+    .nav ul a { color: var(--muted); transition: color 0.2s; }
+    .nav ul a:hover { color: var(--navy); }
+
+    /* 頁首 */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 120px 0 110px;
+    }
+    .eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9fb7da;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.25;
+      font-weight: 700;
+      max-width: 760px;
+    }
+    .hero p {
+      margin-top: 24px;
+      max-width: 560px;
+      color: #c8d5e8;
+      font-size: 1.05rem;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 14px 32px;
+      border: 1px solid var(--white);
+      color: var(--white);
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--white); color: var(--navy); }
+
+    /* 通用區塊 */
+    section { padding: 100px 0; }
+    .section-head { margin-bottom: 56px; }
+    .section-head h2 {
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .section-head p { color: var(--muted); max-width: 560px; }
+
+    /* 服務 */
+    .services { background: var(--white); }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service {
+      padding: 40px 32px;
+      border: 1px solid var(--line);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service:hover { border-color: var(--navy); transform: translateY(-4px); }
+    .service .num {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .service h3 {
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin: 16px 0 12px;
+    }
+    .service p { color: var(--muted); font-size: 0.95rem; }
+    .service ul {
+      margin-top: 20px;
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .service li { padding: 6px 0; border-top: 1px solid var(--line); }
+
+    /* 作品 */
+    .work { background: var(--off-white); }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .work-item { background: var(--white); overflow: hidden; }
+    .work-thumb {
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      color: var(--white);
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: transform 0.4s;
+    }
+    .work-item:hover .work-thumb { transform: scale(1.03); }
+    .t1 { background: linear-gradient(135deg, #0b1f3a, #3d6fb6); }
+    .t2 { background: linear-gradient(135deg, #1c3a63, #8fb0dc); }
+    .t3 { background: linear-gradient(135deg, #24496f, #0b1f3a); }
+    .t4 { background: linear-gradient(135deg, #5a82b8, #0b1f3a); }
+    .t5 { background: linear-gradient(135deg, #0b1f3a, #1c3a63 60%, #c8d5e8); }
+    .t6 { background: linear-gradient(135deg, #3d6fb6, #1c3a63); }
+    .work-info { padding: 20px 24px 24px; }
+    .work-info span {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .work-info h3 { font-size: 1.05rem; color: var(--navy); margin-top: 4px; }
+
+    /* 聯絡 */
+    .contact { background: var(--navy); color: var(--white); }
+    .contact .section-head h2 { color: var(--white); }
+    .contact .section-head p { color: #c8d5e8; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .contact-item {
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      padding-top: 20px;
+    }
+    .contact-item h4 {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: #9fb7da;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .contact-item a:hover { text-decoration: underline; }
+
+    footer {
+      background: var(--navy);
+      color: #7d93b3;
+      font-size: 0.85rem;
+      padding: 28px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 響應式 */
+    @media (max-width: 860px) {
+      .service-grid, .work-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 16px; }
+      .nav ul { gap: 16px; font-size: 0.85rem; }
+      .hero { padding: 80px 0; }
+      section { padding: 72px 0; }
+      .service-grid, .work-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="#top" class="logo">HARBOUR<span>.</span>STUDIO</a>
+      <ul>
+        <li><a href="#services">服務</a></li>
+        <li><a href="#work">作品</a></li>
+        <li><a href="#contact">聯絡</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container">
+      <p class="eyebrow">Hong Kong Design Studio</p>
+      <h1>以設計說好每一個品牌故事</h1>
+      <p>港灣設計工作室立足香港，為本地企業、初創及個人品牌提供平面設計、社交媒體內容及品牌設計服務，以簡潔而有力的視覺語言，助客戶建立鮮明形象。</p>
+      <a href="#contact" class="btn">與我們合作</a>
+    </div>
+  </header>
+
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>服務範疇</h2>
+        <p>由概念構思至最終落地，我們以策略為本，提供一站式的設計方案。</p>
+      </div>
+      <div class="service-grid">
+        <article class="service">
+          <div class="num">01</div>
+          <h3>平面設計</h3>
+          <p>為印刷及數碼媒介設計清晰、具吸引力的視覺作品，準確傳遞訊息。</p>
+          <ul>
+            <li>海報及宣傳單張</li>
+            <li>畫冊及年報</li>
+            <li>包裝設計</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="num">02</div>
+          <h3>社交媒體內容</h3>
+          <p>按品牌調性策劃及製作社交媒體內容，提升互動與觸及率。</p>
+          <ul>
+            <li>Instagram 及 Facebook 貼文</li>
+            <li>短片及動態圖像</li>
+            <li>內容月曆策劃</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="num">03</div>
+          <h3>品牌設計</h3>
+          <p>從品牌定位出發，建立一致而具辨識度的視覺識別系統。</p>
+          <ul>
+            <li>標誌設計</li>
+            <li>品牌指引手冊</li>
+            <li>企業形象應用</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="container">
+      <div class="section-head">
+        <h2>精選作品</h2>
+        <p>以下為近期部分項目，涵蓋餐飲、零售、文化及專業服務等行業。</p>
+      </div>
+      <div class="work-grid">
+        <article class="work-item">
+          <div class="work-thumb t1">茶</div>
+          <div class="work-info"><span>品牌設計</span><h3>灣仔茶室品牌重塑</h3></div>
+        </article>
+        <article class="work-item">
+          <div class="work-thumb t2">展</div>
+          <div class="work-info"><span>平面設計</span><h3>本地藝術展覽主視覺</h3></div>
+        </article>
+        <article class="work-item">
+          <div class="work-thumb t3">IG</div>
+          <div class="work-info"><span>社交媒體內容</span><h3>咖啡店 Instagram 年度策劃</h3></div>
+        </article>
+        <article class="work-item">
+          <div class="work-thumb t4">LOGO</div>
+          <div class="work-info"><span>品牌設計</span><h3>科技初創企業識別系統</h3></div>
+        </article>
+        <article class="work-item">
+          <div class="work-thumb t5">包</div>
+          <div class="work-info"><span>平面設計</span><h3>手工皂包裝系列</h3></div>
+        </article>
+        <article class="work-item">
+          <div class="work-thumb t6">▶</div>
+          <div class="work-info"><span>社交媒體內容</span><h3>健身品牌短片宣傳</h3></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>聯絡我們</h2>
+        <p>如有任何設計需要或合作查詢，歡迎隨時與我們聯絡，我們將於兩個工作天內回覆。</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h4>電郵</h4>
+          <a href="mailto:hello@harbourstudio.hk">hello@harbourstudio.hk</a>
+        </div>
+        <div class="contact-item">
+          <h4>電話</h4>
+          <a href="tel:+85212345678">+852 1234 5678</a>
+        </div>
+        <div class="contact-item">
+          <h4>地址</h4>
+          <p>香港九龍觀塘道 100 號 12 樓</p>
+        </div>
+        <div class="contact-item">
+          <h4>辦公時間</h4>
+          <p>星期一至五<br>上午 10 時至下午 7 時</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© 2026 港灣設計工作室 Harbour Studio。版權所有。</div>
+  </footer>
+
+</body>
+</html>
